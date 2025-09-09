@@ -21,10 +21,15 @@ public class CategoriaController {
 
     @PostMapping
     public ResponseEntity<CategoriaDTO> create(@RequestBody CategoriaDTO dto){
-        Categoria categoria = categoriaService.save(dto);
-        CategoriaDTO categoriaDTO = new CategoriaDTO(categoria.getId(), categoria.getNome());
+        if (dto.getNome() != null && !dto.getNome().equals("")) {
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(categoriaDTO);
+            Categoria categoria = categoriaService.save(dto);
+            CategoriaDTO categoriaDTO = new CategoriaDTO(categoria.getId(), categoria.getNome());
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(categoriaDTO);
+        }
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
     @GetMapping

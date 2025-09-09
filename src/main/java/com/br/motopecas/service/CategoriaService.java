@@ -16,6 +16,7 @@ public class CategoriaService {
     private CategoriaRepository categoriaRepository;
 
     public Categoria save(CategoriaDTO dto) {
+
         Categoria categoria = new Categoria();
         categoria.setNome(dto.getNome());
 
