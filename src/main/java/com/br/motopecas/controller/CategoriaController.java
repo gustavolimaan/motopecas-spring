@@ -6,10 +6,11 @@ import com.br.motopecas.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Categorias")
@@ -24,6 +25,38 @@ public class CategoriaController {
         CategoriaDTO categoriaDTO = new CategoriaDTO(categoria.getId(), categoria.getNome());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(categoriaDTO);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CategoriaDTO>> getAll(){
+        List<Categoria> categorias = categoriaService.findAll();
+
+        List<CategoriaDTO> categoriasDTOS = categorias.stream()
+                .map(categoria -> new CategoriaDTO(categoria.getId(), categoria.getNome()))
+                .toList();
+
+        return ResponseEntity.status(HttpStatus.OK).body(categoriasDTOS);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<CategoriaDTO> getById(@PathVariable Integer id){
+        Categoria categoria = categoriaService.findById(id);
+        CategoriaDTO dto = new CategoriaDTO(id, categoria.getNome());
+
+        return ResponseEntity.status(HttpStatus.OK).body(dto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody CategoriaDTO dto){
+        categoriaService.update(id,dto);
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
+        categoriaService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }

@@ -24,14 +24,23 @@ public class CategoriaService {
 
     public List<Categoria> findAll() {return categoriaRepository.findAll();}
 
-    public Categoria findById(int id) {
+    public Categoria findById(Integer id) {
         Optional<Categoria> categoria = categoriaRepository.findById(id);
 
         return categoria.orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
     }
 
+    public void update(Integer id, CategoriaDTO dto) {
+        Categoria categoria = findById(id);
+        categoria.setNome(dto.getNome());
+        categoriaRepository.save(categoria);
+    }
 
+    public void delete(int id) {
+        Categoria categoria = findById(id);
+        categoriaRepository.delete(categoria);
 
+    }
 
 
 }

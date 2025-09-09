@@ -17,6 +17,7 @@ public class EstadoController {
     @Autowired
     private EstadoService estadoService;
 
+
     @PostMapping
     public ResponseEntity<EstadoDTO> create(@RequestBody EstadoDTO dto){
         Estado estado = estadoService.save(dto);

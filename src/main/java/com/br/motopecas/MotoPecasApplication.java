@@ -14,6 +14,7 @@ public class MotoPecasApplication implements CommandLineRunner {
 
     @Autowired
     private EstadoService estadoService;
+    @Autowired
     private CategoriaService  categoriaService;
 
 
@@ -36,6 +37,8 @@ public class MotoPecasApplication implements CommandLineRunner {
         CategoriaDTO dto2 = new CategoriaDTO();
         dto2.setNome("Fantasia");
 
+        categoriaService.save(dto2);
         categoriaService.save(dto);
+
     }
 }
