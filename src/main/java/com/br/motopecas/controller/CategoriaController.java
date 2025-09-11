@@ -3,33 +3,28 @@ package com.br.motopecas.controller;
 import com.br.motopecas.dto.CategoriaDTO;
 import com.br.motopecas.model.Categoria;
 import com.br.motopecas.service.CategoriaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/Categorias")
+@RequestMapping("/categorias")
 public class CategoriaController {
 
     @Autowired
     private CategoriaService categoriaService;
 
     @PostMapping
-    public ResponseEntity<CategoriaDTO> create(@RequestBody CategoriaDTO dto){
-        if (dto.getNome() != null && !dto.getNome().equals("")) {
+    public ResponseEntity<CategoriaDTO> create(@RequestBody @Valid CategoriaDTO dto){
 
-            Categoria categoria = categoriaService.save(dto);
-            CategoriaDTO categoriaDTO = new CategoriaDTO(categoria.getId(), categoria.getNome());
+        Categoria categoria = categoriaService.save(dto);
+        CategoriaDTO categoriaDTO = new CategoriaDTO(categoria.getId(), categoria.getNome());
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(categoriaDTO);
-        }
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(categoriaDTO);
     }
 
     @GetMapping
@@ -51,7 +46,7 @@ public class CategoriaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody CategoriaDTO dto){
+    public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody @Valid CategoriaDTO dto){
         categoriaService.update(id,dto);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
