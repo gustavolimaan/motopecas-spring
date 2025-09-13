@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ClienteDTO {
 
-    private int id;
+    private Integer id;
 
     @NotBlank(message = "O nome não pode ser vazio")
     @Size(min = 3, max = 50, message = "O nome precisa contar entre 3 e 50 categorias")
@@ -23,4 +23,13 @@ public class ClienteDTO {
 
     @NotBlank(message = "O CPF não pode ser vazio")
     private String cpf;
+
+
+    public ClienteDTO(Integer id, String nome, String email, String telefone, String cpf) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.cpf = cpf;
+    }
 }

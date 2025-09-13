@@ -37,7 +37,7 @@ public class CategoriaService {
         categoriaRepository.save(categoria);
     }
 
-    public void delete(int id) {
+    public void delete(Integer id) {
         Categoria categoria = findById(id);
         categoriaRepository.delete(categoria);
 
