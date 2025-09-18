@@ -24,14 +24,14 @@ public class MotoPecasApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-     /*  EstadoDTO dto5 = new EstadoDTO();
+        EstadoDTO dto5 = new EstadoDTO();
         dto5.setNome("São Paulo");
         EstadoDTO dto4 = new EstadoDTO();
         dto4.setNome("Rio de Janeiro");
 
         estadoService.save(dto5);
         estadoService.save(dto4);
-*/
+
         CategoriaDTO dto = new CategoriaDTO();
         dto.setNome("Esportiva");
         CategoriaDTO dto2 = new CategoriaDTO();
@@ -39,6 +39,8 @@ public class MotoPecasApplication implements CommandLineRunner {
 
         categoriaService.save(dto2);
         categoriaService.save(dto);
+
+
 
     }
 }

@@ -1,5 +1,6 @@
 package com.br.motopecas.dto;
 
+import com.br.motopecas.model.Endereco;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ public class ClienteDTO {
 
     @NotBlank(message = "O CPF não pode ser vazio")
     private String cpf;
+
 
 
     public ClienteDTO(Integer id, String nome, String email, String telefone, String cpf) {
