@@ -20,4 +20,8 @@ public class Endereco {
     @JoinColumn(name = "fk_cliente_id", nullable = false)
     private Cliente cliente;
 
+    @ManyToOne
+    @JoinColumn(name = "fk_cidade_id", nullable = false)
+    private Cidade cidade;
+
 }

@@ -16,5 +16,6 @@ public class EnderecoDTO {
     private String numero;
     private String bairro;
     private Integer cliente_id;
+    private Integer cidade_id;
 
 }

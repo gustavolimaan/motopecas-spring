@@ -79,7 +79,7 @@ public class ClienteController {
 
         Endereco endereco = enderecoService.save(dto);
         EnderecoDTO enderecoDTO = new EnderecoDTO(endereco.getId(), endereco.getLogradouro(), endereco.getCep(),
-                endereco.getComplemento(), endereco.getNumero(), endereco.getBairro(), endereco.getCliente().getId());
+                endereco.getComplemento(), endereco.getNumero(), endereco.getBairro(), endereco.getCliente().getId(), endereco.getCidade().getId());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(enderecoDTO);
     }
@@ -89,10 +89,18 @@ public class ClienteController {
         Cliente cliente = clienteService.findById(cliente_id);
         List<EnderecoDTO> enderecosDTO = cliente.getEnderecos().stream()
                 .map(endereco -> new EnderecoDTO(endereco.getId(), endereco.getLogradouro(), endereco.getCep(),
-                        endereco.getComplemento(), endereco.getNumero(), endereco.getBairro(), endereco.getCliente().getId()))
+                        endereco.getComplemento(), endereco.getNumero(), endereco.getBairro(), endereco.getCliente().getId(), endereco.getCidade().getId()))
                 .collect(Collectors.toList());
 
         return ResponseEntity.status(HttpStatus.OK).body(enderecosDTO);
+    }
+
+    @GetMapping("/{cliente_id}/enderecos/{enderecos_id}")
+    public ResponseEntity<EnderecoDTO> delete(@PathVariable Integer cliente_id , @PathVariable Integer enderecos_id){
+        enderecoService.delete(enderecos_id);
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+
     }
 
 }
