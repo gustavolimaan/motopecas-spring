@@ -1,0 +1,15 @@
+INSERT INTO categoria (nome) VALUES ('Capacetes');
+INSERT INTO categoria (nome) VALUES ('Jaquetas e Equipamentos de Proteção');
+INSERT INTO categoria (nome) VALUES ('Luvas');
+INSERT INTO categoria (nome) VALUES ('Botas e Calçados');
+INSERT INTO categoria (nome) VALUES ('Peças de Motor');
+INSERT INTO categoria (nome) VALUES ('Pneus e Rodas');
+INSERT INTO categoria (nome) VALUES ('Sistema de Freios');
+INSERT INTO categoria (nome) VALUES ('Escapamentos');
+INSERT INTO categoria (nome) VALUES ('Filtros');
+INSERT INTO categoria (nome) VALUES ('Óleos e Lubrificantes');
+INSERT INTO categoria (nome) VALUES ('Bateria e Sistema Elétrico');
+INSERT INTO categoria (nome) VALUES ('Acessórios');
+INSERT INTO categoria (nome) VALUES ('Bagageiros e Alforjes');
+INSERT INTO categoria (nome) VALUES ('Ferramentas e Manutenção');
+INSERT INTO categoria (nome) VALUES ('Iluminação');
