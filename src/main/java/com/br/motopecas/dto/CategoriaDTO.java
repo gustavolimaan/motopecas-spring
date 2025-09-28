@@ -16,5 +16,4 @@ public class CategoriaDTO {
     @NotBlank(message = "O nome da categoria não pode ser vazio")
     @Size(min = 3, max = 50, message = "O nome da categoria deve ter entre 3 e 50 caracteres")
     private String nome;
-
 }

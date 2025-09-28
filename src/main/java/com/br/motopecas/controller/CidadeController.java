@@ -48,14 +48,15 @@ public class CidadeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CidadeDTO> update(@PathVariable Integer id, @RequestBody CidadeDTO dto){
-        Cidade cidade = cidadeService.findById(id);
-        CidadeDTO cidadeDTO = new CidadeDTO(cidade.getId(), cidade.getNome());
-        return ResponseEntity.ok(cidadeDTO);
+    public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody CidadeDTO dto){
+
+        cidadeService.update(id, dto);
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<CidadeDTO> delete(@PathVariable Integer id){
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
         cidadeService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

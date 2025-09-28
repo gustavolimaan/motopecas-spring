@@ -5,6 +5,7 @@ import com.br.motopecas.model.Cidade;
 import com.br.motopecas.repository.CidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +30,13 @@ public class CidadeService {
         Optional<Cidade> cidade = cidadeRepository.findById(id);
 
         return cidade.orElseThrow(() -> new RuntimeException("Cidade não encontrada"));
+    }
+
+    public void update(Integer id, CidadeDTO dto) {
+        Cidade cidade = findById(id);
+        cidade.setNome(dto.getNome());
+
+        cidadeRepository.save(cidade);
     }
 
     public void delete(Integer id) {
