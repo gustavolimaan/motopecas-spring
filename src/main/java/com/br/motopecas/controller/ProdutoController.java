@@ -1,5 +1,6 @@
 package com.br.motopecas.controller;
 
+import com.br.motopecas.dto.CategoriaDTO;
 import com.br.motopecas.dto.ProdutoDTO;
 import com.br.motopecas.model.Produto;
 import com.br.motopecas.service.ProdutoService;
@@ -22,7 +23,7 @@ public class ProdutoController {
 
         Produto produto = produtoService.save(dto);
         ProdutoDTO produtoDTO = new ProdutoDTO(produto.getId(), produto.getNome(),
-                produto.getDescricao(), produto.getPreco(), produto.getFabricante(), produto.getCategoria());
+                produto.getDescricao(), produto.getPreco(), produto.getFabricante(), new CategoriaDTO(produto.getCategoria().getId(), produto.getCategoria().getNome()));
 
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoDTO);
     }
@@ -32,7 +33,7 @@ public class ProdutoController {
         List<Produto> produtos = produtoService.findAll();
         List<ProdutoDTO> produtosDTOS = produtos.stream().
                 map(produto -> new ProdutoDTO(produto.getId(), produto.getNome(),
-                        produto.getDescricao(), produto.getPreco(), produto.getFabricante(), produto.getCategoria())).toList();
+                        produto.getDescricao(), produto.getPreco(), produto.getFabricante(), new CategoriaDTO(produto.getCategoria().getId(), produto.getCategoria().getNome()))).toList();
 
         return ResponseEntity.ok(produtosDTOS);
     }
@@ -41,7 +42,7 @@ public class ProdutoController {
     public ResponseEntity<ProdutoDTO> findById(@PathVariable Integer id){
         Produto produto = produtoService.findById(id);
         ProdutoDTO produtoDTO = new ProdutoDTO(produto.getId(), produto.getNome(),
-                produto.getDescricao(), produto.getPreco(), produto.getFabricante(), produto.getCategoria());
+                produto.getDescricao(), produto.getPreco(), produto.getFabricante(), new CategoriaDTO(produto.getCategoria().getId(), produto.getCategoria().getNome()));
 
         return ResponseEntity.ok(produtoDTO);
     }

@@ -19,7 +19,6 @@ public class Produto {
 
     @ManyToOne
     @JoinColumn(name = "fk_categoria_id", nullable = false)
-    @JsonBackReference
     private Categoria categoria;
 
 }

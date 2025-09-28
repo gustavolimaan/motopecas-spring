@@ -16,7 +16,7 @@ public class ProdutoDTO {
     private String descricao;
     private Double preco;
     private String fabricante;
-    private Categoria categoria;
+    private CategoriaDTO categoria;
 
 
 }
