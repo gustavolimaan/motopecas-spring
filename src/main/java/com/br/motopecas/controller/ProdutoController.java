@@ -62,4 +62,9 @@ public class ProdutoController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    @GetMapping("/filtrar")
+    public List<Produto> filtrarProduto(@RequestParam(required = false) String nome, @RequestParam(required = false) Integer id){
+        return produtoService.filtrarProduto(nome, id);
+    }
+
 }

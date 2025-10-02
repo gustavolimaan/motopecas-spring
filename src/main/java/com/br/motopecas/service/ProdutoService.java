@@ -62,4 +62,8 @@ public class ProdutoService {
         produtoRepository.delete(produto);
     }
 
+    public List<Produto> filtrarProduto(String nome, Integer id) {
+        return produtoRepository.filtrarProduto(nome, id);
+    }
+
 }
