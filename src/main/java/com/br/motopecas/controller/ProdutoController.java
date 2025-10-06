@@ -63,8 +63,9 @@ public class ProdutoController {
     }
 
     @GetMapping("/filtrar")
-    public List<Produto> filtrarProduto(@RequestParam(required = false) String nome, @RequestParam(required = false) Integer id){
-        return produtoService.filtrarProduto(nome, id);
+    public List<Produto> filtrarProduto(@RequestParam(required = false) String nome, @RequestParam(required = false) String descricao,
+                                        @RequestParam(required = false) Double preco, @RequestParam(required = false) String fabricante){
+        return produtoService.filtrarProduto(nome, descricao, preco, fabricante);
     }
 
 }
