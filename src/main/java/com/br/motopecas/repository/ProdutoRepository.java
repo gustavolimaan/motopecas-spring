@@ -1,6 +1,8 @@
 package com.br.motopecas.repository;
 
 import com.br.motopecas.model.Produto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -17,6 +19,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
             "(:preco IS NULL OR p.preco = :preco) AND " +
             "(:fabricante IS NULL OR p.fabricante LIKE %:fabricante%) AND " +
             "(:categoria_id IS NULL OR p.categoria.id = :categoria_id)")
-    List<Produto> filtrarProduto(String nome, String descricao, Double preco, String fabricante, Integer categoria_id);
+    Page<Produto> filtrarProduto(String nome, String descricao, Double preco, String fabricante, Integer categoria_id, Pageable pageable);
 
 }

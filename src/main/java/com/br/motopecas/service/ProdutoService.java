@@ -6,6 +6,8 @@ import com.br.motopecas.model.Produto;
 import com.br.motopecas.repository.CategoriaRepository;
 import com.br.motopecas.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -62,8 +64,8 @@ public class ProdutoService {
         produtoRepository.delete(produto);
     }
 
-    public List<Produto> filtrarProduto(String nome, String descricao, Double preco, String fabricante, Integer categoria_id) {
-        return produtoRepository.filtrarProduto(nome, descricao, preco, fabricante, categoria_id);
+    public Page<Produto> filtrarProduto(String nome, String descricao, Double preco, String fabricante, Integer categoria_id, Pageable pageable) {
+        return produtoRepository.filtrarProduto(nome, descricao, preco, fabricante, categoria_id, pageable);
     }
 
 }

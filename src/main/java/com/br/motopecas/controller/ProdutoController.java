@@ -5,6 +5,10 @@ import com.br.motopecas.dto.ProdutoDTO;
 import com.br.motopecas.model.Produto;
 import com.br.motopecas.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -63,10 +67,19 @@ public class ProdutoController {
     }
 
     @GetMapping("/filtrar")
-    public List<Produto> filtrarProduto(@RequestParam(required = false) String nome, @RequestParam(required = false) String descricao,
-                                        @RequestParam(required = false) Double preco, @RequestParam(required = false) String fabricante,
-                                        @RequestParam(required = false) Integer categoria_id){
-        return produtoService.filtrarProduto(nome, descricao, preco, fabricante,  categoria_id);
+    public Page<Produto> filtrarProduto(@RequestParam(required = false) String nome,
+                                        @RequestParam(required = false) String descricao,
+                                        @RequestParam(required = false) Double preco,
+                                        @RequestParam(required = false) String fabricante,
+                                        @RequestParam(required = false) Integer categoria_id,
+                                        @RequestParam(defaultValue = "0") int page,
+                                        @RequestParam(defaultValue = "10") int size,
+                                        @RequestParam(defaultValue = "nome")  String sort,
+                                        @RequestParam(defaultValue = "ASC")  String direction){
+
+        Pageable pageable = PageRequest.of(page, size, Sort.Direction.valueOf(direction), sort);
+
+        return produtoService.filtrarProduto(nome, descricao, preco, fabricante, categoria_id, pageable);
     }
 
 }
