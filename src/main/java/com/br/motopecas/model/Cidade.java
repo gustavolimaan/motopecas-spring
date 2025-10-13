@@ -18,11 +18,6 @@ public class Cidade {
     private Integer id;
     private String nome;
 
-    /*
-    @ManyToOne
-    @JoinColumn(name = "fk_estado_id", nullable = false)
-    private Estado estado;
-    */
 
     @OneToMany(mappedBy = "cidade", cascade = CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();

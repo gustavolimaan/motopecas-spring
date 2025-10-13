@@ -3,6 +3,9 @@ package com.br.motopecas.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Entity
 public class Endereco {
@@ -24,4 +27,6 @@ public class Endereco {
     @JoinColumn(name = "fk_cidade_id", nullable = false)
     private Cidade cidade;
 
+    @OneToMany(mappedBy = "endereco", cascade = CascadeType.ALL)
+    private List<Pedido> pedidos = new ArrayList<>();
 }
