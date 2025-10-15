@@ -10,6 +10,8 @@ import com.br.motopecas.service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EnderecoService {
     @Autowired
@@ -41,5 +43,11 @@ public class EnderecoService {
         Endereco endereco = enderecoRepository.findById(id).get();
         enderecoRepository.delete(endereco);
 
+    }
+
+    public Endereco findById(Integer id) {
+        Optional<Endereco> endereco = enderecoRepository.findById(id);
+
+        return endereco.orElseThrow(() -> new RuntimeException("Endereco não encontrado"));
     }
 }
