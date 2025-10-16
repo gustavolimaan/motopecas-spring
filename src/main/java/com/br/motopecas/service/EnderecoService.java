@@ -40,7 +40,7 @@ public class EnderecoService {
     }
 
     public void delete(Integer id) {
-        Endereco endereco = enderecoRepository.findById(id).get();
+        Endereco endereco = findById(id);
         enderecoRepository.delete(endereco);
 
     }

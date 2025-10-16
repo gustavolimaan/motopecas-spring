@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -27,6 +28,8 @@ public class PedidoService {
     private ClienteService clienteService;
     @Autowired
     private EnderecoService enderecoService;
+    @Autowired
+    private ProdutoService produtoService;
 
     @Transactional
     public Pedido criarPedido(PedidoNewDTO pedidoDTO) {
@@ -38,7 +41,7 @@ public class PedidoService {
         pedido.setNumero_pedido(gerarNumero());
 
         for (ItemPedidoNewDTO itemDTO : pedidoDTO.getItens()){
-            Produto produto = new Produto(itemDTO.getPedido_id());
+            Produto produto = produtoService.findById(itemDTO.getProduto_id());
             ItemPedido item = new ItemPedido();
             item.setPedido(pedido);
             item.setProduto(produto);
@@ -58,6 +61,14 @@ public class PedidoService {
     }
 
     public Pedido findById(Integer id){
+        Optional<Pedido> pedido = pedidoRepository.findById(id);
+
+        return pedido.orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+    }
+
+    public void delete(Integer id){
+        Pedido pedido = findById(id);
+        pedidoRepository.delete(pedido);
 
     }
 

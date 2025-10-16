@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class PedidoNewDTO {
 
-    private Integer cliente_id;
     private Integer endereco_id;
+    private Integer cliente_id;
     private List<ItemPedidoNewDTO> itens;
 }

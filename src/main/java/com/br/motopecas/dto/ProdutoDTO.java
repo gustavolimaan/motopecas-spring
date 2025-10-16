@@ -17,6 +17,4 @@ public class ProdutoDTO {
     private Double preco;
     private String fabricante;
     private CategoriaDTO categoria;
-
-
 }

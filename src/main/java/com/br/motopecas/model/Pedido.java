@@ -1,5 +1,6 @@
 package com.br.motopecas.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
@@ -28,6 +29,7 @@ public class Pedido {
 
     private String numero_pedido;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "id.pedido", cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<ItemPedido> itens = new ArrayList<>();
