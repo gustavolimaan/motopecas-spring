@@ -45,7 +45,7 @@ public class PedidoService {
             ItemPedido item = new ItemPedido();
             item.setPedido(pedido);
             item.setProduto(produto);
-            item.setQuantidade(item.getQuantidade());
+            item.setQuantidade(itemDTO.getQuantidade());
             pedido.getItens().add(item);
         }
         return pedidoRepository.save(pedido);

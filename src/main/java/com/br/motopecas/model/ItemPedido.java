@@ -10,7 +10,7 @@ import lombok.Data;
 public class ItemPedido {
 
     @EmbeddedId
-    private ItemPedidoPK id;
+    private ItemPedidoPK id = new ItemPedidoPK();
     private Integer quantidade;
 
     public void setPedido(Pedido pedido) {
